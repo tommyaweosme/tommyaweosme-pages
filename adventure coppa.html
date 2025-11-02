@@ -1,74 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-    body{
-        background-color:blue;
+    body {
+        background-color: blue;
+        color: white;
+        font-family: sans-serif;
     }
 </style>
+</head>
 <body>
 <h1>adventure coppa</h1>
-<div style="background-color:red;">student misery: <variable id="misery">0</variable></div>
-<button onclick="block()">block website</button>
-<span id=1 style="display:none;"><button onclick="upgrade(10,1)">implement school rule (cost: 10 misery)</button></span>
-<span id=2 style="display:none;"><button onclick="upgrade(50,5)">make school longer (cost: 50 misery)</button></span>
-<span id=3 style="display:none;"><button onclick="upgrade(200,20)">buy more coppaware (cost: 200 misery)</button></span>
-<span id=4 style="display:none;"><button onclick="upgrade(3000,100)">rain controller (cost: 3000 misery)</button></span>
-<span id=5 style="display:none;"><button onclick="upgrade(27000,100)">hack neuralink (cost: 27k misery)</button></span>
-<span id=6 style="display:none;"><button onclick="win();">infinite homework (cost: 100k misery)</button></span>
-<br><br>
-<span id=7 style="display:none;"><button onclick="addmisery((Math.random() ** 15) * 1000)">gamble with emotions</button></span>
-<script>
-    function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-    document.getElementById("misery").innerHTML = getCookie(misery)
-    var miseryperblock = getCookie(miseryperblock);
-    if (miseryperblock == 0){
-        miseryperblock = 1;
-    };
-    function addmisery(x){
-        document.getElementById("misery").innerHTML = Number(document.getElementById("misery").innerHTML) + x;
-        document.cookie = "misery=" + Number(document.getElementById("misery").innerHTML);
-    };
-    function block(){
-        addmisery(miseryperblock);
-        revealing();
-    };
-    function upgrade(cost,add){
-        if (Number(document.getElementById("misery").innerHTML) > cost-1){
-            addmisery(-cost);
-            miseryperblock += add
-            document.cookie = "miseryperblock=" + Number(document.getElementById("misery").innerHTML);
-        } else {
-            alert("not enough misery!")
-        };
-    };
-    function reveal(id,upon){
-        if (Number(document.getElementById("misery").innerHTML) > upon-1){
-            document.getElementById(id).style.display = "block";
-        };
-    };
-    function revealing(){
-        reveal(1,10);
-        reveal(2,30);
-        reveal(3,170);
-        reveal(4,1000);
-        reveal(5,4000);
-        reveal(6,100000);
-        reveal(7,50000);
-    };    function win(){
-        document.write('<body style="background-color:black;color:white;">you have sucked every bit of joy from your students. COPPA has gone into full effect. you feel as if you should be proud, but you feel... sad? you know that you aren\'t <i>really</i> doing it for safety, but you think that you shouldn\'t have gone so far as to hack the entire weather system just to curse your students. you wonder why you thought it was such a good idea to do this. you use critical thinking for one time in your life and finally unblock all the games, relieving your students from their misery.');
-    };
 
-</script>
-</body>
+<div style="background-color:red;">
+    student misery: <span id="misery">0</span>
+</div>
+
+<button onclick="blockWebsite()">block website</button>
+
+<span id="1" style="display:none;">
+    <button onclick="upgrade(10,1)">implement school rule (cost: 10 misery)</button>
+</span>
+<span id="2" style="display:none;">
+    <button onclick="upgrade(50,5)">make school longer (cost: 50 misery)</button>
+</span>
+<span id="3" style="display:none;">
+    <button onclick="upgrade(200,20)">buy more coppaware (cost: 200 misery)</button>
+</span>
+<span id="4" style="display:none;">
+    <button onclick="upgrade(3000,100)">rain controller (cost: 3000 misery)</button>
+</span>
+<span id="5" style="display:none;">
+    <button onclick="upgrade(27000,100)">hack neuralink (cost: 27k misery)</button>
+</span>
+<span id="6" style="display:none;">
+    <button onclick="win()">infinite homework (cost: 100k misery)</button>
+</span>
+<br><br>
+<span id="7" style="display:none;">
+    <button onclick="addMisery((Math.random() ** 15) * 1000)">gamble with emotions</button>
+</span>
+
+<script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return "";
+}
+
+// --- Initialize values ---
+let misery = Number(getCookie("misery")) || 0;
+let miseryPerBlock = Number(getCookie("miseryperblock")) || 1;
+
+// Show initial misery value
+document.getElementById("misery").innerHTML = misery;
+
+// --- Functions ---
+function addMisery(x) {
+    mise
