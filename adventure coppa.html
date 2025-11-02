@@ -58,4 +58,52 @@ document.getElementById("misery").innerHTML = misery;
 
 // --- Functions ---
 function addMisery(x) {
-    mise
+    misery += x;
+    document.getElementById("misery").innerHTML = Math.floor(misery);
+    document.cookie = "misery=" + misery;
+}
+
+function blockWebsite() {
+    addMisery(miseryPerBlock);
+    revealAll();
+}
+
+function upgrade(cost, add) {
+    if (misery >= cost) {
+        addMisery(-cost);
+        miseryPerBlock += add;
+        document.cookie = "miseryperblock=" + miseryPerBlock;
+    } else {
+        alert("Not enough misery!");
+    }
+}
+
+function reveal(id, threshold) {
+    if (misery >= threshold) {
+        document.getElementById(String(id)).style.display = "inline";
+    }
+}
+
+function revealAll() {
+    reveal(1,10);
+    reveal(2,30);
+    reveal(3,170);
+    reveal(4,1000);
+    reveal(5,4000);
+    reveal(6,100000);
+    reveal(7,50000);
+}
+
+function win() {
+    document.write(`
+        <body style="background-color:black;color:white;">
+        you have sucked every bit of joy from your students. COPPA has gone into full effect. you feel as if you should be proud, but you feel... sad? you know that you aren\'t <i>really</i> doing it for safety, but you think that you shouldn\'t have gone so far as to hack the entire weather system just to curse your students. you wonder why you thought it was such a good idea to do this. you use critical thinking for one time in your life and finally unblock all the games, relieving your students from their misery.
+        </body>
+    `);
+}
+
+// Reveal upgrades that should already be unlocked
+revealAll();
+</script>
+</body>
+</html>
